@@ -1,0 +1,57 @@
+<html lang="en">
+  <head>
+    <title>Image Compression using K-Means Clustering - Demo from Instructor</title>
+  </head>
+  <body>
+      <center>
+      <h1>Image Compression using K-Means Clustering - Demo from Instructor</h1>
+      <form action="/result" enctype="multipart/form-data" method="POST">
+        <table border="1">
+            <tr>
+                <td>Upload image</td>
+                <td><input name="file" id="file" type="file" required/>
+                </td>
+            </tr>
+            
+            <tr>
+                <td>Set the number of cluster (K value)</td>
+                <td><input name="kvalue" type="text" value="10" required/></td>
+            </tr>
+           
+            <tr>
+                <td></td>
+                <td><button type="submit" name="compress">Compress</button></td>
+            </tr>
+          </table>
+      </form>
+          
+          <br/>
+          
+          <h3>Last 10 compressed images:</h3>
+          <table border=1>
+                <tr>
+                    <td>date time</td>
+                    <td>original size</td>
+                    <td>compressed size</td>
+                    <td>reduced by</td>
+                    <td>Click to show</td>
+                </tr>
+                {% for data in last_data %}
+                <tr>
+                    <td>{{ data.created_at }}</td>
+                    <td>{{ data.original_size }} KB</td>
+                     <td>{{ data.compressed_size }} KB</td>
+                    <td>{{ data.reduced_by }} times</td>
+                    <td><a href="{{url_for('show_result', id=data._id)}}">{{ data._id }}</a></td>
+                </tr>
+              {% else %}
+                    <tr>
+                        <td colspan=5><center><i>No data (empty)</i></center></td>
+                    </tr>
+                {% endfor %}
+            </table>
+          <br/>
+          <img src="https://upload.wikimedia.org/wikipedia/en/8/8d/Sejong_University.png"/>
+      </center>
+  </body>      
+</html>

@@ -1,0 +1,47 @@
+<html lang="en">
+  <head>
+    <title>Image Compression using K-Means Clustering - Demo from Instructor</title>
+  </head>
+  <body>
+      <center>
+      <h1>Image Compression using K-Means Clustering - Demo from Instructor</h1>
+          {% if data %}
+        <table border="1">
+            <tr>
+                <td>Original image</td>
+                <td><img src="{{url_for('static',filename = 'uploaded_images/'+data.original_file)}}" width="200px"/></td>
+            </tr>
+            <tr>
+                <td>Original size</td>
+                <td>{{data.original_size}} KB</td>
+            </tr>
+            <tr>
+                <td>K value (# of cluster)</td>
+                <td>{{data.kvalue}}</td>
+            </tr>
+            <tr>
+                <td>Compressed image</td>
+                <td><img src="{{url_for('static',filename = 'uploaded_images/'+data.compressed_file)}}" width="200px"/></td>
+            </tr>
+            <tr>
+                <td>Compressed size</td>
+                <td>{{data.compressed_size}} KB</td>
+            </tr>
+            <tr>
+                <td>Reduced by</td>
+                <td>{{data.reduced_by}} times</td>
+            </tr>
+            <tr>
+                <td colspan=2><center><a href="{{url_for('index')}}" >Compress Another Image?</a></center></td>
+            </tr>
+          </table>
+          <br/>
+          {% else %}
+          <h3>Sorry, the requested data is not found!</h3>
+          <center><a href="{{url_for('index')}}" >Compress Another Image instead?</a></center>
+          {% endif %}
+          <br/>
+          <img src="https://upload.wikimedia.org/wikipedia/en/8/8d/Sejong_University.png"/>
+      </center>
+  </body>      
+</html>
